@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810120925) do
+ActiveRecord::Schema.define(version: 20170810120554) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "text",       limit: 65535
@@ -19,14 +19,6 @@ ActiveRecord::Schema.define(version: 20170810120925) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["artist_id"], name: "index_answers_on_artist_id", using: :btree
-  end
-
-  create_table "feeds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "feedable_type"
-    t.integer  "feedable_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["feedable_type", "feedable_id"], name: "index_feeds_on_feedable_type_and_feedable_id", using: :btree
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
