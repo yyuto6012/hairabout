@@ -1,2 +1,47 @@
-- @questions.each do |q|
-  = q.title
+.container-fluid
+  .row.center-block
+    .col-md-8.pull-left
+      .row
+        .col-md-10.col-md-offset-2
+          h2.new-q
+           i(class="fa fa-question-circle-o fa-orange", aria-hidden="true")
+           span.new-q--title 新着の質問
+        - @questions.each do |q|
+          .col-md-10.col-md-offset-2.q-content
+            i(class="fa fa-question-circle-o fa-2x fa-orange", aria-hidden="true")
+            = link_to("#{q.title}", question_path(q), class: "q-title")
+            .col-md-12
+              .q-text
+                = q.text
+              .q-answer
+                i(class="fa fa-comment fa-lg fa-orange", aria-hidden="true")
+                span.q-answers-count #{q.answers.count} 美容師回答
+      .row
+        .col-md-10.col-md-offset-2
+          .panel.panel-info
+            .panel-heading 美容師ランキング
+            .panel-body 回答数でランキングしています。
+            ul.list-group
+              - @artists.each_with_index do |artist, i|
+                .list-group-item
+                  .media
+                    a.media-left
+                      .box
+                    .media-body
+                      h4.media-heading
+                        span.artist-name #{i + 1} . #{artist.first_name} #{artist.last_name}
+                      .artist-place #{artist.prefecture}
+                      .artist-contact メールで連絡
+      .row
+        .col-md-10.col-md-offset-2
+          .panel.panel-info
+            .panel-heading
+              役に立つ質問
+            table.table
+              tbody
+                - @liked_questions.each_with_index do |l, i|
+                  tr
+                    th #{i+1}
+                    td #{l.text}
+    .col-md-4.pull-right
+      .row

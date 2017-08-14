@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     registrations: 'artists/registrations'
   }
   root to: "top#index"
+  resources :questions, param: :title, path: "/questions", only: [:show, :new, :create]
 end
