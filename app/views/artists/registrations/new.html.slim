@@ -1,24 +1,60 @@
-h2
-  | Sign up
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Sign up"
-= render "artists/shared/links"
+  .col-md-8.col-md-offset-2
+    .row
+      .col-md-12
+        h2.new-q 新規登録
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :姓, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.text_field :last_name, class: "form-control area-color"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :名, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.text_field :first_name, class: "form-control area-color"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :メール, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.email_field :email, class: "form-control area-color", autocomplete: "off"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :都道府県, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "form-control area-color"}
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :証明書（賞状）, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.file_field :certificate, class: "form-control area-color"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :パスワード, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.password_field :password, class: "form-control area-color", autocomplete: "off"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :パスワード確認, class: "q-label"
+          span.label.label-danger 必須
+        .col-md-6
+          = f.password_field :password_confirmation, class: "form-control area-color", autocomplete: "off"
+
+    .row
+      .col-md-6.col-md-offset-3.mt10
+        = f.submit :登録, class: "btn btn-info fa-2x center-block"
+    = render "users/shared/links"

@@ -1,4 +1,4 @@
-.navbar.navbar-default
+.navbar.navbar-default style="margin-bottom: 0px;"
   .container-fluid
     .navbar-header
       button.navbar-toggle data-target="#gnavi" data-toggle="collapse" type="button"
@@ -7,10 +7,19 @@
         span.icon-bar
       = link_to("Hair About", root_path, class: "navbar-brand header-title")
     #gnavi.collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li.header-list
-          = link_to('会員登録', new_user_registration_path, class: "btn btn-info site-color")
-        li.header-list
-          = link_to('美容師の方はこちら', new_artist_registration_path, class: "btn btn-info site-color")
-        li.header-list
-          = link_to('質問する', new_question_path, class: "btn btn-info site-color")
+      - if user_signed_in?
+        ul.nav.navbar-nav.navbar-right
+          li.header-list
+            = link_to('美容師の方はこちら', explanation_path ,class: "btn btn-info site-color")
+          li.header-list
+            = link_to('質問する', new_question_path, class: "btn btn-info site-color")
+          li.header-list
+            = link_to('ログアウト', destroy_user_session_path(current_user), :method => 'delete', class: "btn btn-info site-color")
+      - else
+        ul.nav.navbar-nav.navbar-right
+          li.header-list
+            = link_to('会員登録', new_user_registration_path, class: "btn btn-info site-color")
+          li.header-list
+            = link_to('美容師の方はこちら', explanation_path, class: "btn btn-info site-color")
+          li.header-list
+            = link_to('質問する', new_question_path, class: "btn btn-info site-color")

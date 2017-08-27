@@ -31,3 +31,71 @@
   width: 50px
   height: 50px
   background-color: black
+
+.lp-top
+  background-color: #E6FFE9
+  height: 400px
+  &_title
+    border-radius: 4px
+    background-color: #d9edf7
+    text-align: center
+    padding: 7px 15px
+  &_content
+    margin-top: 20px
+  &_explation
+    font-size: 20px
+  .lists
+    margin-top: 15px
+  &_list
+    display: inline-block
+    margin-left: 20px
+.lp-middle
+  height: 400px
+  &_title
+    text-align: center
+    background-color: #d9edf7
+    text-align: center
+    padding: 7px 15px
+  .lists
+    margin-top: 15px
+  &_list
+    display: inline-block
+    background-color: #d9edf7
+    width: 200px
+    height: 200px
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    border-radius: 50%
+    border: 4px solid #ddd
+    margin-right: 20px
+    &--content
+      text-align: center
+      line-height: 200px
+.lp-bottom
+  height: 300px
+  background-color: #FFFFEE
+  &_title
+    text-align: center
+    background-color: #d9edf7
+    text-align: center
+    padding: 7px 15px
+  .lists
+    margin-top: 15px
+  &_list
+    display: inline-block
+    width: 250px
+    height: 100px
+    counter-increment: count
+  &_list:before
+    content: counter(count)
+    display: inline-block
+    width: 100px
+    height: 100px
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    border-radius: 50%
+    border: 4px solid #ddd
+    margin-right: 20px
+    font-size: 20px
+    text-align: center
+    line-height: 100px

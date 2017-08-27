@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     registrations: 'artists/registrations'
   }
   root to: "top#index"
+  get "/explanation" => "top#explanation"
   resources :questions, param: :title, path: "/questions", only: [:show, :new, :create]
+  resources :artists, param: :first_name, path: "artists", only: [ :index, :show]
 end

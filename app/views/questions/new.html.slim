@@ -1,0 +1,42 @@
+= form_for(@question) do |f|
+  .row.center-block
+    .col-md-8.pull-left
+      .row
+        .col-md-12
+          h2.new-q 質問内容の入力
+      .row
+        .col-md-10.col-md-offset-1.devision-line
+          .col-md-2.col-md-offset-1
+            = f.label :タイトル, class: "q-label"
+            span.label.label-danger 必須
+          .col-md-9
+            = f.text_field :title, class: "form-control area-color"
+      .row
+        .col-md-10.col-md-offset-1.devision-line
+          .col-md-2.col-md-offset-1
+            = f.label :質問内容, class: "q-label"
+            span.label.label-danger 必須
+          .col-md-9
+            = f.text_area :text, class: "form-control q-area area-color"
+      .row
+        .col-md-10.col-md-offset-1.devision-line
+          .col-md-2.col-md-offset-1
+            = f.label :カテゴリー, class: "q-label"
+            span.label.label-danger 必須
+          .col-md-9
+            = f.collection_select :category_id, Category.all, :id, :name, {prompt: "選択してください"}, {class: "form-control"}
+      .row
+        .col-md-6.col-md-offset-3.mt10
+          = f.submit :内容を確認する, class: "btn btn-info fa-2x center-block"
+    .col-md-4.pull-right
+      .col-md-12
+        .faq
+          h3.faq_title 美容専門のQAサービスです。
+          p.faq_content 髪の専門家である美容師にあなたの疑問や悩みを相談しましょう。
+          p
+            a.btn.btn-info.btn-lg.center-block もっと詳しく
+      .col-md-12
+        .login-inv
+          h3.login-inv_title
+            span.label.label-info 新規登録/ログイン
+          p.login-inv_content アカウントを作って、QAで質問しましょう。

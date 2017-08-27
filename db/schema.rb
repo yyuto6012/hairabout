@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811011646) do
+ActiveRecord::Schema.define(version: 20170827175236) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "text",        limit: 65535
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170811011646) do
     t.string   "last_name"
     t.string   "email",                                default: "", null: false
     t.string   "encrypted_password",                   default: "", null: false
-    t.integer  "prefecture"
+    t.integer  "prefecture_id"
     t.text     "descritpion",            limit: 65535
-    t.integer  "like_count"
+    t.integer  "like_count",                           default: 0
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -44,17 +44,36 @@ ActiveRecord::Schema.define(version: 20170811011646) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.string   "header_photo"
+    t.string   "certificate"
     t.index ["email"], name: "index_artists_on_email", unique: true, using: :btree
+    t.index ["prefecture_id"], name: "index_artists_on_prefecture_id", using: :btree
     t.index ["reset_password_token"], name: "index_artists_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                      null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["name"], name: "index_categories_on_name", using: :btree
+  end
+
+  create_table "prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_prefectures_on_name", using: :btree
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "text",       limit: 65535
+    t.text     "text",        limit: 65535
     t.integer  "user_id"
-    t.integer  "want_count"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "want_count",                default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "category_id"
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
 
@@ -62,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170811011646) do
     t.string   "name",                                null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.integer  "prefecture"
+    t.integer  "prefecture_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -77,8 +96,10 @@ ActiveRecord::Schema.define(version: 20170811011646) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "header_photo"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", using: :btree
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

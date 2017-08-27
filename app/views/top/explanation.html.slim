@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title
+      | Hairabout
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .container-fluid
+      .row.lp-top
+        .col-md-6.col-md-offset-3
+          h2.lp-top_title 質問を通じたお客様とのマッチング
+        .col-md-6.col-md-offset-3.lp-top_content
+          p.lp-top_explation 質問を通じて、髪に悩み・疑問を持つ方と繋がり、質問を通じて、様々な交流をすることができます。
+        .col-md-6.col-md-offset-3
+          ul.center-block.lists
+            li.lp-top_list
+              = link_to('会員登録', new_artist_registration_path, class: "btn btn-info fa-3x site-color")
+            li.lp-top_list
+              = link_to('ログイン', new_artist_session_path, class: "btn btn-info fa-3x site-color")
+      .row.lp-middle
+        .col-md-6.col-md-offset-3
+          h2.lp-middle_title HairAboutの3つの特徴
+        .col-md-8.col-md-offset-3
+          ul.center-block.lists
+            li.center-block.lp-middle_list
+              p.lp-middle_list--content アカウント無料作成
+            li.center-block.lp-middle_list
+              p.lp-middle_list--content 個人でマーケティング
+            li.center-block.lp-middle_list
+              p.lp-middle_list--content お客様との交流
+      .row.lp-bottom
+        .col-md-6.col-md-offset-3
+          h2.lp-bottom_title 登録手順
+        .col-md-8.col-md-offset-2
+          ul.center-block.lists
+            li.center-block.lp-bottom_list 情報入力
+            li.center-block.lp-bottom_list 入力内容確認
+            li.center-block.lp-bottom_list 登録完了
+        .col-md-6.col-md-offset-4
+          ul.center-block.lists
+            li.lp-top_list
+              = link_to('会員登録', new_artist_registration_path, class: "btn btn-info fa-2x site-color")
+            li.lp-top_list
+              = link_to('ログイン', new_artist_session_path, class: "btn btn-info fa-2x site-color")
+    = render "shared/footer"
+

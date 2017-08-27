@@ -5,4 +5,9 @@ class TopController < ApplicationController
     @artists = artist_ids.map{ |id| Artist.find(id) }
     @liked_questions = Question.order(want_count: :desc).limit(5)
   end
+
+  def explanation
+    render layout: false
+  end
+
 end

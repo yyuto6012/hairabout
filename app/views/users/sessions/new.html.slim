@@ -1,18 +1,33 @@
-h2
-  | Log in
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "users/shared/links"
+  = devise_error_messages!
+  .col-md-8.col-md-offset-2
+    .row
+      .col-md-12
+        h2.new-q ログイン
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :名前, class: "q-label"
+        .col-md-6
+          = f.text_field :name, class: "form-control area-color"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :メール, class: "q-label"
+        .col-md-6
+          = f.email_field :email, class: "form-control area-color", autocomplete: "off"
+    .row
+      .col-md-10.col-md-offset-1.devision-line
+        .col-md-3.col-md-offset-1
+          = f.label :パスワード, class: "q-label"
+        .col-md-6
+          = f.password_field :password, class: "form-control area-color", autocomplete: "off"
+    - if devise_mapping.rememberable?
+      .row
+        .col-md-10.col-md-offset-1
+          = f.check_box :remember_me
+          = f.label :記憶
+    .row
+      .col-md-6.col-md-offset-3.mt10
+        = f.submit :ログイン, class: "btn btn-info fa-2x center-block"
+    = render "users/shared/links"

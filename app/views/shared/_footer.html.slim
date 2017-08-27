@@ -1,0 +1,19 @@
+footer.footer
+  .navbar.navbar-default style="margin-bottom: 0px;"
+    button.navbar-toggle data-target="#gnavi" data-toggle="collapse" type="button"
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    ul.nav.navbar-nav.nav-footer
+      li.footer-list
+        Hearaboutとは
+      li.footer-list
+        a 利用規約
+      li.footer-list
+        a 個人情報保護について
+      li.footer-list
+        a ヘルプ・お問い合わせ
+      li.footer-list
+        = link_to('会員登録', new_user_registration_path)
+      li.footer-list
+        = link_to('美容師の方はこちら', new_artist_registration_path)
