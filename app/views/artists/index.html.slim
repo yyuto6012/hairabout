@@ -1,0 +1,37 @@
+.row.center-block
+  .col-md-8.pull-left.mt10
+    .col-md-10.col-md-offset-1
+      .panel.panel-info
+        .panel-heading 美容師一覧
+        .panel-body 回答数で並んでいます。
+        ul.list-group
+          - @artists.each_with_index do |artist, i|
+            .list-group-item
+              .media
+                a.media-left
+                  .box
+                .media-body
+                  h4.media-heading
+                    span.artist-name
+                      = link_to("#{artist.last_name} #{artist.first_name}", artist_path(artist.hash_id))
+                  .artist-place
+                    i(class="fa fa-map-marker fa-lg fa-orange", aria-hidden="true")
+                    span.ml10 #{artist.prefecture.name}
+                  .artist-contact
+                    i(class="fa fa-phone fa-lg fa-orange", aria-hidden="true")
+                    span.ml10 090-8098-8618
+                    i(class="fa fa-envelope-o fa-orange", aria-hidden="true")
+                    span.ml10 メールでお問い合わせ
+                  .artist-description #{artist.description}
+  .col-md-4.pull-right
+    .col-md-12
+      .faq
+        h3.faq_title 美容専門のQAサービスです。
+        p.faq_content 髪の専門家である美容師にあなたの疑問や悩みを相談しましょう。
+        p
+          a.btn.btn-info.btn-lg.center-block もっと詳しく
+    .col-md-12
+      .login-inv
+        h3.login-inv_title
+          span.label.label-info 新規登録/ログイン
+        p.login-inv_content アカウントを作って、QAで質問しましょう。

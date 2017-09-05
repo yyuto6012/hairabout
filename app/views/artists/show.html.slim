@@ -1,0 +1,31 @@
+.row.center-block
+  .col-md-10.col-md-offset-1.mb
+    .media.a-detail
+      a.media-left
+        .box
+      .media-body
+        h1.media-heading
+          span.a-detail_name #{@artist.last_name} #{@artist.first_name}
+          span.a-detail_job.ml10 美容師
+        hr
+        i(class="fa fa-map-marker fa-lg fa-orange", aria-hidden="true")
+        span.ml10 #{@artist.prefecture.name}
+        .a-detail_contact
+          i(class="fa fa-phone fa-lg fa-orange", aria-hidden="true")
+          span.ml10 090-8098-8618
+          i(class="fa fa-envelope-o fa-orange", aria-hidden="true")
+          span.ml10 メールでお問い合わせ
+  .col-md-10.col-md-offset-1
+    .panel.panel-info
+      .panel-heading #{@artist.last_name} #{@artist.first_name} 美容師の回答一覧
+      ul.list-group
+        - @artist.answers.each do |answer|
+          .list-group-item
+            h4.list-group-item-heading
+              = link_to("#{answer.question.title}", question_path(answer.question.title))
+            p.list-group-item-text
+              = answer.text
+            .answer-count
+              i(class="fa fa-comment", aria-hidden="true")
+                span.ml10 いいね #{answer.like_count}
+

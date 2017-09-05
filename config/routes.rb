@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
   root to: "top#index"
   get "/explanation" => "top#explanation"
-  resources :questions, param: :title, path: "/questions", only: [:show, :new, :create]
-  resources :artists, param: :first_name, path: "artists", only: [ :index, :show]
+  resources :questions, path: "/questions", only: [:show, :new, :create]
+  resources :answers, only: [:new, :create]
+  resources :artists, param: :hash_id, path: "artists", only: [ :index, :show]
 end

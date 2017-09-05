@@ -1,4 +1,11 @@
 class QuestionsController < ApplicationController
+
+  def show
+    @question = Question.find(params[:id])
+    @answers = @question.answers
+    @related_questions = @question.category.questions.order(created_at: :desc).page(params[:page]).limit(5)
+  end
+
   def new
     @question = Question.new
   end

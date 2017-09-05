@@ -19,7 +19,9 @@
       .col-md-10.col-md-offset-2
         .panel.panel-info
           .panel-heading 美容師ランキング
-          .panel-body 回答数でランキングしています。
+          .panel-body
+            | 回答数でランキングしています。
+            span.artists-btn = link_to("美容師一覧", artists_path, class: "btn btn-info")
           ul.list-group
             - @artists.each_with_index do |artist, i|
               .list-group-item
@@ -28,16 +30,24 @@
                     .box
                   .media-body
                     h4.media-heading
-                      span.artist-name #{i + 1} . #{artist.first_name} #{artist.last_name}
-                    .artist-place #{artist.prefecture}
-                    .artist-contact メールで連絡
+                      span.artist-name #{i + 1} .
+                      = link_to("#{artist.last_name} #{artist.first_name}", artist_path(artist.hash_id))
+                    .artist-place
+                    i(class="fa fa-map-marker fa-lg fa-orange", aria-hidden="true")
+                    span.ml10 #{artist.prefecture.name}
+                    .answer-count
+                      i(class="fa fa-comment", aria-hidden="true")
+                        span.ml10 回答数 #{artist.answers.count}
+                    .artist-answer
+                      .artist-answer_title 最近の投稿
+                      .artist-answer_content
+                        = artist.answers.last.text
           .panel-footer
             = link_to("美容師一覧", artists_path, class: "artists-index")
     .row
       .col-md-10.col-md-offset-2
         .panel.panel-info
-          .panel-heading
-            役に立つ質問
+          .panel-heading 役に立つ質問
           table.table
             tbody
               - @liked_questions.each_with_index do |l, i|

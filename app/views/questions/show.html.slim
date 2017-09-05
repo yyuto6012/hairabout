@@ -1,0 +1,62 @@
+.row.center-block
+  .col-md-8.pull-left
+    .row.q-detail
+      .col-md-10.col.col-md-offset-2
+        h2.q-detail_title
+          i(class="fa fa-question-circle-o fa-orange", aria-hidden="true")
+          span.q-detail_title--letter #{@question.title}
+      .col-md-10.col-md-offset-2.mb10.underline
+        i(class="fa fa-check-circle-o fa-lg fa-orange ml10", aria-hidden="true")
+        span.q-detail_category #{@question.category.name}
+        span.pull-right.q-detail_ac 回答: #{@question.answers.count} 件
+        i(class="fa fa-comment fa-lg fa-orange ml10 pull-right", aria-hidden="true")
+      .col-md-10.col-md-offset-2.mb10.underline
+        .media.mb10
+          a.media-left
+            .box-2
+          .media-body
+            h4.media-heading #{@question.user.name} さん
+      .col-md-10.col-md-offset-2.underline
+        .q-detail_text 質問詳細
+        .q-detail_text--content #{@question.text}
+    .row.a-detail
+      .col-md-10.col-md-offset-2
+        i(class="fa fa-comment fa-2x fa-orange ml10", aria-hidden="true")
+        span.a-detail_title 回答 #{@answers.count} 件
+      - if @answers.present?
+        - @answers.each do |answer|
+          .col-md-10.col-md-offset-2.a-detail_bg
+            .media.mb10
+              a.media-left
+                .box-2
+              .media-body
+                h4.media-heading #{answer.artist.last_name} #{answer.artist.first_name} さん
+            .a-detail_text
+              p.a-detail_text-content #{answer.text}
+          - if current_user.?
+            .col-md-10.col-md-offset-2
+              .login-inv
+                h3.login-inv_title
+                  = link_to("質問に答える", new_answer_path, class: "label label-info")
+                p.login-inv_content アカウントを作って、QAで質問しましょう。
+    .row.c-q
+      .col-md-10.col.col-md-offset-2
+        .panel.panel-info
+          .panel-heading 関連度の高い質
+          ul.list-group
+          - @related_questions.each do |rq|
+            li.list-group-item
+              .c-q_header
+                i(class="fa fa-question-circle-o fa-orange", aria-hidden="true")
+                = link_to("#{rq.title}", question_path(rq), class: "c-q_header--title")
+              .c-q_body
+                p.c-q_body--content #{rq.text}
+              .c-q_footer
+                i(class="fa fa-comment fa-lg fa-orange ml10", aria-hidden="true")
+                span.c-q_footer-count 回答 #{rq.answers.count} 件
+  .col-md-4.pull-right
+    .col-md-12
+      .login-inv
+        h3.login-inv_title
+          span.label.label-info 新規登録/ログイン
+        p.login-inv_content アカウントを作って、QAで質問しましょう。
